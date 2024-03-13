@@ -26,12 +26,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.telefonia.ui.theme.TelefoniaTheme
 import com.example.telefonia.vm.ViewModelSMS
 
 class MainActivity : ComponentActivity() {
+    lateinit var  view:ViewModelSMS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -39,18 +41,23 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.error
+                    color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting()
+                    view=ViewModelProvider(this).get(ViewModelSMS::class.java)
                 }
             }
         }
     }
 }
 
+
 @Composable
 fun Greeting(modifier: Modifier = Modifier,
              viewModel: ViewModelSMS = viewModel (factory= ViewModelSMS.Factory )) {
+
+    ShareViewModel.viewModel=viewModel
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -89,15 +96,6 @@ fun Greeting(modifier: Modifier = Modifier,
             },
             modifier= Modifier.fillMaxWidth()
         )
-
-        Button(
-            onClick = {
-                // Acción al hacer clic en el botón
-            },
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text("Send SMS")
-        }
     }
 }
 
@@ -108,4 +106,9 @@ fun GreetingPreview() {
     TelefoniaTheme {
         Greeting()
     }
+}
+
+
+object  ShareViewModel{
+    lateinit var  viewModel:ViewModelSMS
 }
