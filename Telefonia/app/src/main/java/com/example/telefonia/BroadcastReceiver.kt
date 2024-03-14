@@ -25,7 +25,7 @@ class BroadcastReceiver: BroadcastReceiver() {
             telephonyManager=context2.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             var getNumber=intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
 
-            var realNumber= ShareViewModel.viewModel.phone
+            var realNumber= SharedViewModel.viewModel.phone
 
             if(getNumber!=null && getNumber==realNumber){
                 sendMessage(number = getNumber)
@@ -41,7 +41,7 @@ class BroadcastReceiver: BroadcastReceiver() {
     private  fun sendMessage(
         number:String){
         val sms=SmsManager.getDefault()
-        val msg=ShareViewModel.viewModel.sms
+        val msg=SharedViewModel.viewModel.sms
         sms.sendTextMessage(number,null,msg,null,null)
     }
 

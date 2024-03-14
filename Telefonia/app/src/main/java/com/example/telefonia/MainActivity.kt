@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -22,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -56,7 +58,7 @@ class MainActivity : ComponentActivity() {
 fun Greeting(modifier: Modifier = Modifier,
              viewModel: ViewModelSMS = viewModel (factory= ViewModelSMS.Factory )) {
 
-    ShareViewModel.viewModel=viewModel
+    SharedViewModel.viewModel=viewModel
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -66,7 +68,7 @@ fun Greeting(modifier: Modifier = Modifier,
             .fillMaxWidth()
     ){
 
-        Spacer(modifier = Modifier.height(200.dp))
+        Spacer(modifier = Modifier.height(150.dp))
         Row(
         ){
 
@@ -84,6 +86,7 @@ fun Greeting(modifier: Modifier = Modifier,
             onValueChange ={
                 viewModel.phoneUpdate(it)
             },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
             modifier= Modifier.fillMaxWidth()
         )
 
@@ -109,6 +112,6 @@ fun GreetingPreview() {
 }
 
 
-object  ShareViewModel{
+object  SharedViewModel{
     lateinit var  viewModel:ViewModelSMS
 }

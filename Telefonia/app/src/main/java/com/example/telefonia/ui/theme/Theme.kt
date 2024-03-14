@@ -17,15 +17,15 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = azulPN, // Azul primario
-    secondary = azulSN, // Azul secundario
-    tertiary = azulTN // Azul terciario
+    primary = AzulPN, // Azul primario
+    secondary = AzulSN, // Azul secundario
+    tertiary = AzulTN // Azul terciario
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = azulP, // Azul primario
-    secondary = azulS, // Azul secundario
-    tertiary = azulT// Azul terciario
+    primary = AzulP, // Azul primario
+    secondary = AzulS, // Azul secundario
+    tertiary = AzulT// Azul terciario
 
 
     /* Other default colors to override

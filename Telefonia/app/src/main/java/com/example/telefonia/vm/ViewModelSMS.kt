@@ -22,6 +22,7 @@ class ViewModelSMS():ViewModel(){
         sms=msg
     }
 
+
     companion object{
         val Factory= viewModelFactory {
             initializer {
