@@ -68,12 +68,12 @@ fun Greeting(modifier: Modifier = Modifier,
             .fillMaxWidth()
     ){
 
-        Spacer(modifier = Modifier.height(150.dp))
+        Spacer(modifier = Modifier.height(100.dp))
         Row(
         ){
 
             Text(
-                text= "Automatic SMS Telephony",
+                text= "SMS Telephony",
                 fontSize = 21.sp,
                 fontFamily =  FontFamily.SansSerif,
                 fontWeight = FontWeight.ExtraBold,
