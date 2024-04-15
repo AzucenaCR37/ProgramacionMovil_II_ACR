@@ -1,12 +1,14 @@
 package net.ivanvega.milocationymapascompose.ui.maps
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMapOptions
 import com.google.android.gms.maps.model.CameraPosition
@@ -15,6 +17,8 @@ import com.google.maps.android.compose.AdvancedMarker
 import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerInfoWindow
+import com.google.maps.android.compose.MarkerInfoWindowContent
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.rememberMarkerState
@@ -98,6 +102,26 @@ fun RecomposingElements(){
             delay(5.seconds)
             val old = markerState.position
             markerState.position = LatLng(old.latitude + 1.0, old.longitude + 2.0)
+        }
+    }
+}
+
+@Composable
+fun CustomizingMarkersWindow(){
+    GoogleMap(
+        googleMapOptionsFactory = {
+            GoogleMapOptions().mapId("DEMO_MAP_ID")
+        },
+    ) {
+        MarkerInfoWindowContent() { marker ->
+            Text(marker.title ?: "Este es el marcado mas mamalon que veras", color = Color.Black)
+        }
+        MarkerInfoWindow() { marker ->
+            // Implement the custom info window here
+            Column {
+                Text(marker.title ?: "Marcador mamalon", color = Color.Blue)
+                Text(marker.snippet ?: "A perro el marcador si jalo", color = Color.DarkGray)
+            }
         }
     }
 }
