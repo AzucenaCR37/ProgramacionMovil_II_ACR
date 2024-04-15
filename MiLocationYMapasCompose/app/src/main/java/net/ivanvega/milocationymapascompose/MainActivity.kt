@@ -15,7 +15,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.platform.location.locationupdates.LocationUpdatesScreen
 import com.example.platform.location.permission.LocationPermissionScreen
 import net.ivanvega.milocationymapascompose.ui.location.CurrentLocationScreen
+import net.ivanvega.milocationymapascompose.ui.maps.ControllingCamera
+import net.ivanvega.milocationymapascompose.ui.maps.ControllingMapDiretly
+import net.ivanvega.milocationymapascompose.ui.maps.CustomizingMarkersWindow
+import net.ivanvega.milocationymapascompose.ui.maps.DrawingOnAMap
 import net.ivanvega.milocationymapascompose.ui.maps.MiMapa
+import net.ivanvega.milocationymapascompose.ui.maps.RecomposingElements
 import net.ivanvega.milocationymapascompose.ui.theme.MiLocationYMapasComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +38,12 @@ class MainActivity : ComponentActivity() {
                     //LocationPermissionScreen()
                     //CurrentLocationScreen()
                     //LocationUpdatesScreen()
-                    MiMapa()
+                    //MiMapa()
+                    //ControllingCamera()
+                    //DrawingOnAMap()
+                    //RecomposingElements()
+                    //CustomizingMarkersWindow()
+                    ControllingMapDiretly()
                 }
             }
         }
