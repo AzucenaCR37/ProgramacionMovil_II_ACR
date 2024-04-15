@@ -13,9 +13,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMapOptions
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.compose.AdvancedMarker
 import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.MapEffect
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerInfoWindow
 import com.google.maps.android.compose.MarkerInfoWindowContent
@@ -122,6 +124,24 @@ fun CustomizingMarkersWindow(){
                 Text(marker.title ?: "Marcador mamalon", color = Color.Blue)
                 Text(marker.snippet ?: "A perro el marcador si jalo", color = Color.DarkGray)
             }
+        }
+    }
+}
+
+
+@Composable
+fun ControllingMapDiretly(){
+    GoogleMap(
+        googleMapOptionsFactory = {
+            GoogleMapOptions().mapId("DEMO_MAP_ID")
+        }
+    ) {
+        MapEffect { map ->
+
+            val sydney = LatLng(-34.0, 151.0)
+            map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+            map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         }
     }
 }
