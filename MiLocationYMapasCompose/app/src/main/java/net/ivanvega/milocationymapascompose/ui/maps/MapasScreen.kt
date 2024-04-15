@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMapOptions
@@ -16,6 +17,9 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.maps.android.compose.rememberMarkerState
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun MiMapa(){
@@ -70,5 +74,30 @@ fun DrawingOnAMap(){
             state = MarkerState(position = LatLng(35.66, 139.6)),
             title = "Marker in Tokyo"
         )
+    }
+}
+
+@Composable
+fun RecomposingElements(){
+    val singapore = LatLng(1.35, 103.87)
+
+    val markerState = rememberMarkerState(position = singapore)
+
+    GoogleMap(
+        googleMapOptionsFactory = {
+            GoogleMapOptions().mapId("DEMO_MAP_ID")
+        },
+    ) {
+        AdvancedMarker(
+            state = MarkerState(position =markerState.position),
+            title = "Marker in singapore"
+        )
+    }
+    LaunchedEffect(Unit) {
+        repeat(10) {
+            delay(5.seconds)
+            val old = markerState.position
+            markerState.position = LatLng(old.latitude + 1.0, old.longitude + 2.0)
+        }
     }
 }
