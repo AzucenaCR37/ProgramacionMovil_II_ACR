@@ -116,13 +116,13 @@ fun CustomizingMarkersWindow(){
         },
     ) {
         MarkerInfoWindowContent() { marker ->
-            Text(marker.title ?: "Este es el marcado mas mamalon que veras", color = Color.Black)
+            Text(marker.title ?: "Información del marcador", color = Color.Black)
         }
         MarkerInfoWindow() { marker ->
             // Implement the custom info window here
             Column {
-                Text(marker.title ?: "Marcador mamalon", color = Color.Blue)
-                Text(marker.snippet ?: "A perro el marcador si jalo", color = Color.DarkGray)
+                Text(marker.title ?: "Marcador", color = Color.Blue)
+                Text(marker.snippet ?: "El marcador funcionó", color = Color.DarkGray)
             }
         }
     }
