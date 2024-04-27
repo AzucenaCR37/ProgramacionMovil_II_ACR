@@ -38,12 +38,12 @@ class MainActivity : ComponentActivity() {
                     //LocationPermissionScreen()
                     //CurrentLocationScreen()
                     //LocationUpdatesScreen()
-                    //MiMapa()
+                    MiMapa()
                     //ControllingCamera()
                     //DrawingOnAMap()
                     //RecomposingElements()
                     //CustomizingMarkersWindow()
-                    ControllingMapDiretly()
+                    //ControllingMapDiretly()
                 }
             }
         }

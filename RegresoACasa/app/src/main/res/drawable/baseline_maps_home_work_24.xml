@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:tint="#000000"
+    android:viewportHeight="24"
+    android:viewportWidth="24"
+    android:width="24dp">
+
+    <!-- Techo de la casa -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M12,2L2,12h20z"/>
+
+    <!-- Cuerpo de la casa -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M4,12v8h16v-8z"/>
+
+    <!-- Puerta -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M10,12h4v6h-4z"/>
+
+    <!-- Ventanas -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M6,14h2v2H6zM16,14h2v2h-2z"/>
+
+</vector>
