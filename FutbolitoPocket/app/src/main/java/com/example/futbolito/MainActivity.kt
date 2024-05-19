@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Futbolito(sensor!=null)
+                    FutbolitoPocket(sensor!=null)
                 }
             }
         }
@@ -89,7 +89,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Futbolito(
+fun FutbolitoPocket(
     giroscopio:Boolean,
     view: ViewModelTest= viewModel(factory = ViewModelTest.Factory)
 ) {
@@ -110,7 +110,7 @@ fun Futbolito(
         }
         BoxWithConstraints(
             modifier = Modifier
-                .size(width = 63.dp, height = 53.dp)
+                .size(width = 65.dp, height = 53.dp)
                 .offset { IntOffset((maxWidth / 2 - 25.dp.toPx()).roundToInt(), 0) }
                 .background(Color(244, 67, 54, 255)),
             content = {}
@@ -138,7 +138,7 @@ fun Futbolito(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(.09f)
-                .background(Color(103, 58, 183, 255), RectangleShape)
+                .background(Color(3, 169, 244, 255), RectangleShape)
                 .align(Alignment.BottomCenter),
             contentAlignment = Alignment.Center
         ){
@@ -147,7 +147,7 @@ fun Futbolito(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(201, 185, 230, 255))
+                    .background(Color(49, 221, 224, 255))
             ) {
                 Text(
                     text = "${SharedViewModel.viewModel.estadoBalon}",
@@ -165,7 +165,7 @@ fun Futbolito(
 @Composable
 fun GreetingPreview() {
     FutbolitoTheme {
-        Futbolito(true)
+        FutbolitoPocket(true)
     }
 }
 
