@@ -1,6 +1,5 @@
 package com.example.futbolito
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -8,9 +7,6 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Half.EPSILON
-import android.util.Log
-import android.util.Size
-import android.widget.ImageView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -18,43 +14,29 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.positionInParent
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.lifecycle.ViewModel
 import com.example.futbolito.ui.theme.FutbolitoTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlin.math.cos
@@ -114,7 +96,7 @@ fun Futbolito(
     SharedViewModel.viewModel = view
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.fondo_1),
+            painter = painterResource(id = R.drawable.cancha),
             contentDescription = "Descripción del fondo",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -124,13 +106,13 @@ fun Futbolito(
         var maxWidth = constraints.maxWidth.toFloat()
         SharedViewModel.viewModel.maxwidth=maxWidth
         if(SharedViewModel.viewModel.mueve){
-            checarGol(maxWidth)
+            verificarGol(maxWidth)
         }
         BoxWithConstraints(
             modifier = Modifier
-                .size(width = 50.dp, height = 53.dp)
+                .size(width = 63.dp, height = 53.dp)
                 .offset { IntOffset((maxWidth / 2 - 25.dp.toPx()).roundToInt(), 0) }
-                .background(Color(255, 235, 59, 255)),
+                .background(Color(244, 67, 54, 255)),
             content = {}
         )
         BoxWithConstraints(
@@ -139,7 +121,7 @@ fun Futbolito(
                 .fillMaxWidth()){
             var maxHeight = constraints.maxHeight.toFloat() // Altura máxima del Box
             SharedViewModel.viewModel.maxheigth=maxHeight
-            posicionarBalonCentro()
+            balonEnCentro()
             Image(
                 painter = painterResource(id = R.drawable.balon),
                 contentDescription = "",
@@ -279,12 +261,12 @@ class AcelerometroSensorHandler() : SensorEventListener {
 }
 
 @Composable
-fun posicionarBalonCentro(){
+fun balonEnCentro(){
     SharedViewModel.viewModel.posicion= Offset(SharedViewModel.viewModel.maxwidth/2-50,SharedViewModel.viewModel.maxheigth)
 }
 
 @Composable
-fun checarGol(screenWidth: Float) {
+fun verificarGol(screenWidth: Float) {
     val imageSize = with(LocalDensity.current) { 50.dp.toPx() }
 
     // Coordenadas del centro superior de la pantalla
@@ -297,9 +279,9 @@ fun checarGol(screenWidth: Float) {
     val imageCrossesTopCenter = imageCenterX-topCenterX in -25f..25f && SharedViewModel.viewModel.posicion.y-topCenterY in -800f..40f
     if (imageCrossesTopCenter) {
         SharedViewModel.viewModel.estadoBalon="Gol"
-        SharedViewModel.viewModel.colorEstado= Color(156, 39, 176, 255)
+        SharedViewModel.viewModel.colorEstado = Color(255, 255, 255, 255)
     }else{
         SharedViewModel.viewModel.estadoBalon="Cancha"
-        SharedViewModel.viewModel.colorEstado= Color(103, 58, 183, 255)
+        SharedViewModel.viewModel.colorEstado = Color(0, 0, 0, 255)
     }
 }
